@@ -1,0 +1,11 @@
+Seasonality/.ipynb_checkpoints/Test_case_seasonality-checkpoint.ipynb
+.DS_Store
+*.pyc
+test_simulation/Seasonality/.ipynb_checkpoints/Test_case_seasonality-checkpoint.ipynb
+app2/test
+venv
+.ipynb_checkpoints
+Untitled.ipynb
+*_filtered.csv
+.vscode
+.vscode/settings.json

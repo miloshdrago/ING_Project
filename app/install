@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# install dependencies
+pip3 install simpy, flask

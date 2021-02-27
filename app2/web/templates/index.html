@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center>
+	<body>
+
+        <!--<img id="top_logo" src="{{ url_for('static', filename='img/ING_logo.jpg')}}?v=1" alt="ING Logo" align="middle" height="140" width="340">-->
+
+
+	  <img src="{{ url_for('static', filename='img/ING_logo.jpg')}}" alt="ING Logo" align="middle" height="175" width="420" style="padding-top: 20px;">
+	  <!-- Navbar -->
+
+	  <div id="mytopnav" class="w3-top">
+	    <div class="w3-bar w3-orange w3-card w3-left-align w3-large">
+	      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-orange"
+	        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+	      <a href="#Home" class="w3-bar-item w3-button w3-padding-large w3-white">Simulation</a>
+	     <a href="#Visualization" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Visualization</a>
+	      <a href="#Projectdescription" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Project description</a>
+	      <a href="#Discreteeventsimulation" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Discrete event simulation</a>
+	      <a href="#Errorintroduction" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Error introduction</a>
+	      <a href="#Logfile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Download logfiles</a>
+
+	    </div>
+
+	    <!-- Navbar on small screens -->
+	    <div class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+	      <a href="#Home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+	      <a href="#Projectdescription" class="w3-bar-item w3-button w3-padding-large"> Project description</a>
+	      <a href="#Discreteevent" class="w3-bar-item w3-button w3-padding-large">Discrete event</a>
+	      <a href="#Errorintroduction" class="w3-bar-item w3-button w3-padding-large">Error introduction</a>
+
+	    </div>
+	  </div>
+
+	  <!-- Header -->
+	  <header class="w3-container w3-orange w3-center" style="padding:128px 16px">
+	    <h1 class="w3-margin w3-jumbo">Discrete Event Simulation</h1>
+	    <p class="w3-xlarge">Start simulation by introducing parameters</p>
+
+	    <!-- define content container -->
+        <div id="main"></div>
+
+
+
+
+
+	  </header>
+
+	  <!-- Visualization Grid -->
+	  <h1 style="margin-top: 50px;">Visualization</h1>
+	  <div id="no-logfile-div"></div>
+
+	  <div id="Visualization" class="w3-row-padding w3-padding-64 w3-container">
+	    <div class="w3-content">
+	    	<h5>Logfile: <font color="grey">{{ f }}</font></h5>
+
+	    	<hr>
+	    	<h3>Endpoint Communications</h3>
+		     <div id="forceGraph" alt="Server Communication">
+		     		<svg width="800" height="600"></svg>
+		     </div>
+
+			<hr>
+
+		    <h3>Metrics</h3>
+
+		    <!-- Dash visualizations iframe -->
+		    <div id="mainFrameDiv" style="--aspect-ratio: 16/13;">
+				<iframe id="dash-iframe" src="http://localhost:8050/dash/" frameBorder="0" scrolling="no" style="overflow: hidden"> </iframe>
+			</div>
+
+	    </div>
+	  </div>
+
+
+	  <!-- Dropdown menu for Visualizations -->
+	    <div id="dropdwon-div" class="dropdown">
+	    	<h3 style="margin-bottom: 20px;">Show Previous Simulations</h3>
+
+		  <button onclick="myFunction2()" class="dropbtn">Select Simulation</button>
+		  <div id="myDropdown" class="dropdown-content">
+		  	{%for i in range(0, len_logfiles)%}
+			    <a href="/?f={{ log_filenames[i] }}#Visualization">{{ log_filenames[i] }}</a>
+			{%endfor%}
+		  </div>
+		</div>
+
+
+
+	  <hr>
+	  <div id="Projectdescription" class="w3-row-padding w3-padding-64 w3-container">
+	    <div class="w3-content">
+
+	      <div class="w3-twothird">
+
+	        <h1>Project description</h1>
+	        <!--
+	        <div class="w3-third w3-center">
+	        	<img src="{{ url_for('static', filename='img/uva.png')}}" class="center-img">
+	     	 </div>
+	     	-->
+	        <h5 class="w3-padding-32">The main motivation for this project is to have real-life-like IT metrics to be able
+	          to do feed our R&D and analytics initiatives with meaningful data.</h5>
+
+
+	        <p class="w3-text-grey"> The project aims to create a large scale database of annotated machine metrics in the
+	          form of time series. This database, will later be used in a PhD project to test deep learning methods on. The
+	          metrics will be an output of a discrete event simulation model of a realistic system with a certain workload,
+	          such as log-ins or incoming transactions to be processed, and topology of servers communicating with each
+	          other. Independent
+	          failures and cascading failures will be simulated in the system to see the effect on the machine metrics,
+	          later to be annotated as anomalies. </p>
+
+	      </div>
+
+
+	    </div>
+	  </div>
+
+	  <!-- Second Grid -->
+	  <div id="Discreteeventsimulation" class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+	    <div class="w3-content">
+	    <!--
+	      <div class="w3-third w3-center">
+	        <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+	      </div>
+	     -->
+
+	      <div class="w3-twothird">
+	        <h1>Discrete event simulation</h1>
+	        <h5 class="w3-padding-32"> A discrete event simulation is modelled using the Simpy library.</h5>
+
+	        <p class="w3-text-grey">
+				The servers are modelled as Simpy pre-emptive  resources which specifies that if a server is handling
+				a first request and then a higher priority request comes to the server, the priority request will replace the old request.
+				These requests are themselves handled as Simpy processes.<br>
+				The time between the different requests is determined by a seasonality file and a max volume.
+				Timescale of the simulation is in seconds.<br>
+
+
+				The various errors are generated by blocking the server resource for a certain duration which would results in an overload of the server capacity.
+				These errors follow a random pattern which is based on specified parameters.
+				To model a realistic system, a network of different user specified servers is created.
+				The connections between the servers can take different kind of routes and can be multiple for each server.
+				Different routes through the different kinds of servers is possible.</p>
+	      </div>
+	    </div>
+	  </div>
+
+
+
+
+
+	  <!-- Fourth Grid -->
+	  <div id="Errorintroduction" class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+	    <div class="w3-content">
+
+	    <!--
+	      <div class="w3-third w3-center">
+	        <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+	      </div>
+	      -->
+
+	      <div class="w3-twothird">
+	        <h1>Error Specification</h1>
+	        <h5 class="w3-padding-32">The simulation takes various kinds of errors as input to model different relevant scenarios</h5>
+
+	        <p class="w3-text-grey">
+				The errors were introduced in the system in a number of ways:<br>
+				<ul>Firstly an infinite loop, where the processing capacity of a specific server is bocked.<br>
+				<ul>Secondly, a connection between servers can be severed.<br>
+				<ul>Finally, a faulty patch could make the request be processed within 10 seconds instead of 1 second before update.<br>
+
+				In order to see how the systems stabilizes, the system also records when the anomaly was solved and in what way.
+				</p>
+	      </div>
+	    </div>
+	  </div>
+
+
+
+
+	  <div id="Logfile" class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+	    <button class="w3-button w3-buttoncolor w3-padding-large w3-large w3-margin-top" onclick="window.location.href = '/download-logs';">Download logfiles</button>
+	  </div>
+
+
+	  <!-- Footer -->
+	  <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+	  	<p>Powered by UvA Data Science</a></p>
+	  	<img src="{{ url_for('static', filename='img/uva.png')}}?v=2" height="85" width="85">
+	  </footer>
+
+
+
+</body>
+
+
+</center>
+
+<script type="text/javascript">
+
+	var forcegraphDataUrl;
+	var dashGraphUrl;
+	var xhttp = new XMLHttpRequest();
+	var visualizationDiv = document.getElementById("Visualization");
+	var noLogfileDiv = document.getElementById("no-logfile-div");
+	var dropdownMenu = document.getElementById("dropdwon-div");
+
+	if ("{{ f }}") {
+
+		// Generate forceGraph with corresponding logfile f
+		forcegraphDataUrl = "/get_endpoint_data?f=".concat("{{ f }}");
+		forceGraph(forcegraphDataUrl);
+
+		// Call to /generate-dash-graph with given logfile f
+		// dashGraphUrl = "/generate-dash-graph?f=".concat("{{ f }}");
+		// xhttp.open("GET", dashGraphUrl, true);
+		// xhttp.send();
+
+	}
+	else {
+		if ("{{ len_logfiles }}" != 0) {
+			visualizationDiv.innerHTML = ""
+		}
+		else {
+			visualizationDiv.innerHTML = ""
+			dropdownMenu.innerHTML = ""
+			noLogfileDiv.innerHTML = "No logfiles were found. Please run a simulation first."
+		}
+	}
+
+
+
+	// Used to toggle the menu on small screens when clicking on the menu button
+	function myFunction() {
+	  var x = document.getElementById("mytopnav");
+	  if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	  } else {
+	    x.className = x.className.replace(" w3-show", "");
+	  }
+	}
+
+	/* When the user clicks on the button,
+	toggle between hiding and showing the dropdown content */
+	function myFunction2() {
+	  document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	// Close the dropdown if the user clicks outside of it
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropbtn')) {
+	    var dropdowns = document.getElementsByClassName("dropdown-content");
+	    var i;
+	    for (i = 0; i < dropdowns.length; i++) {
+	      var openDropdown = dropdowns[i];
+	      if (openDropdown.classList.contains('show')) {
+	        openDropdown.classList.remove('show');
+	      }
+	    }
+	  }
+	}
+
+</script>
+
+
+{% endblock content %}

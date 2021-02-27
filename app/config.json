@@ -1,0 +1,26 @@
+{
+    "servers": [{
+        "size":     10,
+        "capacity": 100,
+        "kind":     "balance"
+    }, {
+        "size":     10,
+        "capacity": 100,
+        "kind":     "authentication"
+    }, {
+        "size":     10,
+        "capacity": 100,
+        "kind":     "credit"
+    }, {
+        "size":     10,
+        "capacity": 100,
+        "kind":     "payment"
+    }],
+    "process":    [["balance", "authentication", "balance", "payment", "credit"]],
+    "timeout":      1,
+    "runtime":      100,
+    "max_volume":   800,
+    "description": "Multiple Servers with error",
+    "error":{"errorwait": [40,50],
+             "error_duration": [5,10]}
+}

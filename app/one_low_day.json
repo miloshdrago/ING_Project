@@ -1,0 +1,24 @@
+{
+    "servers": [{
+        "size":     1,
+        "capacity": 30,
+        "kind":     "balance"
+    }, {
+        "size":     1,
+        "capacity": 20,
+        "kind":     "authentication"
+    }, {
+        "size":     1,
+        "capacity": 20,
+        "kind":     "credit"
+    }, {
+        "size":     1,
+        "capacity": 20,
+        "kind":     "payment"
+    }],
+    "process":    [["balance", "authentication", "balance", "payment", "credit"]],
+    "timeout":      5,
+    "runtime":      100000,
+    "max_volume":   10,
+    "description": "One server one day exponential latency"
+}

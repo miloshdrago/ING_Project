@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/ing_favicon.png')}}?v=2"/>
+
+    <title>ING Discrete Event Simulation</title>  
+    
+    <!-- define meta data -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A webclient for a discrete event modeling system, commissioned by the University of Amsterdam." />
+
+    <!-- include dependencies -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=388">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}?v=5380119">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bundle.css') }}">
+    <script deferred type="module" src="{{ url_for('static', filename='main.js') }}?v=3000"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.js/1.9.3/snap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/forceGraph.js') }}?v=0030"></script>
+  </head>
+
+  <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-10 mx-auto">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+  </body>
+</html>
+

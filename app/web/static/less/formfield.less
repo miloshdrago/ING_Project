@@ -1,0 +1,63 @@
+/**
+ *  Styles for formfields.
+ *
+ *  @author Tycho Atsma <tycho.atsma@gmail.com>
+ *  @file   web/statis/less/formfield.less
+ *  @scope  private
+ */
+
+/**
+ *  Root class.
+ */
+.formfield
+{
+    // all content should be left sided
+    text-align: left;
+
+    // spacing between fields
+    margin:     0.75em 0;
+
+    // increased font size
+    font-size:  15pt;
+
+    // styles for labels
+    label
+    {
+        // they should be displayed as block
+        display: block;
+    }
+
+    // styles for input
+    input
+    {
+        // get rid of default look
+        outline:    none;
+        border:     none;
+        color:      white;
+
+        // fill the width
+        width:      100%;
+
+        // shaded background
+        background-color:   rgba(120, 120, 120, .15);
+
+        // bottom bordering
+        border-bottom:      1px solid #efefef;
+
+        // little padding
+        padding: 0.25em;
+
+        // placeholder text
+        &::placeholder { color: rgba(255, 255, 255,.3); }
+    }
+
+    // styles for buttons
+    button
+    {
+        // they should be displayed as block
+        display: block;
+
+        // center buttons
+        margin: 0 auto;
+    }
+}
